@@ -56,7 +56,7 @@ test("form shows success message on submit with form details", async () => {
     fireEvent.click(checkoutButton);
 
     // assertion
-    await screen.findByText(/Karina RODRIGUEZ/i);
+    await screen.findByText(/You have ordered some plants! Woo-hoo!/i);
 
 
 });
