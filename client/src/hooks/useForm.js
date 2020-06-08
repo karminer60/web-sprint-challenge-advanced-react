@@ -13,20 +13,18 @@ import { useState } from "react";
   - any number of inputs in a form ✅
   */
 
-export const useForm = (key, initialValue) => {
-  const [values, setValues] = useLocalStorage(key, initialValue);
+export const useForm = (initialValue) => {
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [values, setValues] = useState(initialValue);
 
-  const handleChanges = e => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value
-    });
+  const handleChanges = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const clearForm = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setValues(initialValue);
+    setShowSuccessMessage(true);
   };
 
-  return [values, handleChanges, clearForm];
+  return [values, handleChanges,handleSubmit, showSuccessMessage];
 };
